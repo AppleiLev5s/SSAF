@@ -11,15 +11,15 @@ getgenv().walkto = false;
 local gotoPlayer
 
 	local players = game:GetService("Players")
-	local chatEvents = game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents")
+	TextChatService = cloneref(game:GetService("TextChatService"))
     local messageDoneFiltering = chatEvents:WaitForChild("OnMessageDoneFiltering")
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
 if welcomeMsg then
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("[v6.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !tp [user],","All")
+	TextChatService.TextChannels.RBXGeneral:SendAsync("[v6.0] Meet "..tostring(game.Players.LocalPlayer.DisplayName).."! My commands are: !iq [user], !cooldown, !morse [text], !tp [user],","All")
 	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !jump, !bring, !say [text] and !chat [text].","All")
+	TextChatService.TextChannels.RBXGeneral:SendAsync("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !jump, !bring, !say [text] and !chat [text].","All")
 end
     messageDoneFiltering.OnClientEvent:Connect(function(message)
 	local player = players:FindFirstChild(message.FromSpeaker)
@@ -27,18 +27,18 @@ end
 	if ScriptActive == true and message:find("!",1,1) then
         if player and message == "!hello" then
 			print(player)
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Hello, "..tostring(game.Players:FindFirstChild(tostring(player)).DisplayName)..". This is a test message","All")
+			TextChatService.TextChannels.RBXGeneral:SendAsync("Hello, "..tostring(game.Players:FindFirstChild(tostring(player)).DisplayName)..". This is a test message","All")
         elseif player and message:find("!iq") then
 			if message:find("My commands are") then
 				print("Prevented")
 			elseif message:find("!iq ") then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message:gsub("!iq ","").."'s IQ is "..math.random(70,190),"All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync(message:gsub("!iq ","").."'s IQ is "..math.random(70,190),"All")
 			else
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(tostring(game.Players:FindFirstChild(tostring(player)).DisplayName).."'s IQ is "..math.random(70,190),"All")
+			TextChatService.TextChannels.RBXGeneral:SendAsync(tostring(game.Players:FindFirstChild(tostring(player)).DisplayName).."'s IQ is "..math.random(70,190),"All")
 			end
 		elseif player and message:find("!say ") then
 
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(message:gsub("!say ",""),"All")
+			TextChatService.TextChannels.RBXGeneral:SendAsync(message:gsub("!say ",""),"All")
 
 		elseif player and message == "!cripple" then
 			game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true
@@ -50,7 +50,7 @@ end
 			local Split1 = message:gsub("!chat ","")
 			local Split = Split1:gsub(" ","+")
 			if message:find("#") then
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("tags lol (not ai generated)","All")
+TextChatService.TextChannels.RBXGeneral:SendAsync("tags lol (not ai generated)","All")
 			else
 			local HttpService = game:GetService("HttpService")
 			local Data = game:HttpGet('http://api.brainshop.ai/get?bid=169062&key=JxGYLvYneFFxKdnf&uid=1&msg='..Split)
@@ -58,25 +58,25 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			print(Split)
 			print(req.cnt)
 			if #req.cnt < 160 then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(req.cnt,"All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync(req.cnt,"All")
 			else
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Failed to reply (answer too long)","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("Failed to reply (answer too long)","All")
 			end
 			end
 		elseif player and message == "!cmds" or message == "!help" then
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("My commands are: !iq [user], !cooldown, !morse [text], !tp [user],","All")
+		TextChatService.TextChannels.RBXGeneral:SendAsync("My commands are: !iq [user], !cooldown, !morse [text], !tp [user],","All")
 	wait(0.1)
-	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !jump, !bring, !say [text] and !chat [text].","All")
+	TextChatService.TextChannels.RBXGeneral:SendAsync("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !jump, !bring, !say [text] and !chat [text].","All")
 		elseif player and message == "!jump" then
 			game.Players.LocalPlayer.Character.Humanoid.Jump = true
 		elseif player and message == "!coinflip" then
 			local g = math.random(1,2)
 			if g == 1 then
 				print("It landed on Tails.")
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("It landed on Tails.","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("It landed on Tails.","All")
 			elseif g == 2 then
 				print("It landed on Heads.")
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("It landed on Heads.","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("It landed on Heads.","All")
 			end
 		elseif player and message:find("!accountage ") then
 			local Msg = message:gsub("!accountage ","")
@@ -98,16 +98,16 @@ local currentTime = DateTime.now().UnixTimestamp
 
 local accountAgeDays = (currentTime - createdTime)/86400
 print(math.floor(accountAgeDays))
-game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(Msg.."'s account is "..math.floor(accountAgeDays).." days old","All")
+TextChatService.TextChannels.RBXGeneral:SendAsync(Msg.."'s account is "..math.floor(accountAgeDays).." days old","All")
 		elseif player and message:find("!cooldown") then
 			if cooldown == true then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown time is "..cdtime.." seconds.","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("Cooldown time is "..cdtime.." seconds.","All")
 			elseif cooldown == false then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Cooldown is not active.","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("Cooldown is not active.","All")
 			end
 		elseif player and message:find("!follow ") then
 			if message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.DisplayName) or message:gsub("!follow ","") == tostring(game.Players.LocalPlayer.Name) then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("yeah no","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("yeah no","All")
 			else
 			walkto = false
 			wait(0.5)
@@ -131,7 +131,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			if tostring(player) == tostring(gotoPlayer) or tostring(player) == tostring(game.Players.LocalPlayer.Name) then
 				walkto = false
 			else
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Only the GoTo player can do that.","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("Only the GoTo player can do that.","All")
 			end
 		elseif player and message:find("!morse ") then
 			local split = message:gsub("!morse ","")
@@ -152,7 +152,7 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 					morsetxt = req.contents.translated
 				end
 			end
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(morsetxt,"All")
+			TextChatService.TextChannels.RBXGeneral:SendAsync(morsetxt,"All")
 		elseif player and message:find("!math ") then
 			local split2 = message:gsub("!math ","")
 			local split = split2:gsub("%a","")
@@ -160,9 +160,9 @@ game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageReque
 			local g = loadstring("return "..split)()
 			print(g)
 			if g == nil then
-				game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("❌ Incorrect parameters","All")
+				TextChatService.TextChannels.RBXGeneral:SendAsync("❌ Incorrect parameters","All")
 			else
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(""..tostring(g),"All")
+			TextChatService.TextChannels.RBXGeneral:SendAsync(""..tostring(g),"All")
 			end
 		elseif player and message:find("!tp ") then
 			local spl = message:gsub("!tp ","")
