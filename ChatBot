@@ -21,8 +21,7 @@ if welcomeMsg then
 	wait(0.1)
 	TextChatService.TextChannels.RBXGeneral:SendAsync("!follow [plr], !stop, !accountage [username], !math, !cripple, !hello, !cmds/!help, !coinflip, !jump, !bring, !say [text] and !chat [text].","All")
 end
-    messageDoneFiltering.OnClientEvent:Connect(function(message)
-	local player = players:FindFirstChild(message.FromSpeaker)
+local player = players:FindFirstChild(message.FromSpeaker)
     local message = message.Message or ""
 	if ScriptActive == true and message:find("!",1,1) then
         if player and message == "!hello" then
