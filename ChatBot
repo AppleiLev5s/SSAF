@@ -12,7 +12,6 @@ local gotoPlayer
 
 	local players = game:GetService("Players")
 	TextChatService = cloneref(game:GetService("TextChatService"))
-    local messageDoneFiltering = chatEvents:WaitForChild("OnMessageDoneFiltering")
 
 print("Made by ! $ ive seen sunlight#6040 (928754943064678481)")
 
